@@ -1,0 +1,30 @@
+{
+  "name": "vuecms",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --open --port 1997 --contentBase src "
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^0.28.7",
+    "html-webpack-plugin": "^3.2.0",
+    "less": "^3.8.1",
+    "less-loader": "^4.1.0",
+    "style-loader": "^0.23.1",
+    "url-loader": "^1.1.2",
+    "vue-loader": "^13.0.0",
+    "vue-template-compiler": "^2.5.17",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.9.3"
+  },
+  "dependencies": {
+    "mint-ui": "^2.2.13",
+    "vue": "^2.5.17",
+    "vue-router": "^3.0.1"
+  }
+}
