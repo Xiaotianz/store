@@ -21,3 +21,28 @@
   + 数据获取成功，渲染在页面中
 ## 六宫格
 1. 主要是样式的修改
+
+## 组件动画切换 
+1. 使用overflow 实现右侧页面隐藏 .v-enter和.v-leave-to 分离写法 实现右侧进入 左侧离开 
+2. position：实现组件内容从下往上进入的bug
+ ```
+ .app-container{
+	padding-top:40px;     
+	overflow-x: hidden;     //右侧隐藏 当我这个页面还没有出去的时候 右侧的页面隐藏
+}
+.v-enter,         
+{     
+	opacity: 0;
+	transform: translateX(100%);
+}
+.v-leave-to{
+	opacity: 0;
+	transform: translateX(-100%);
+	position: absolute;
+    
+}
+.v-enter-active,   
+.v-leave-active{
+     transition: all 0.5s ease
+}
+```
