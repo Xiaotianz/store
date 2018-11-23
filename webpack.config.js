@@ -34,7 +34,7 @@ module.exports={
             //配置url图片的支持
             {test:/\.(png|jpg|gif|jpeg|bmp)$/,use:"url-loader?limit=81325&name=[hash:8]-[name].[ext]"},
             //配置字体文件的支持
-            {test:/\.(ttg|eot|svg|woff|woff2)$/,use:"url-loader"},  
+            {test:/\.(ttf|eot|svg|woff|woff2)$/,use:"url-loader"},  
             //配置.vue文件的支持
             {test:/\.vue$/,use:"vue-loader"} 
         ]
