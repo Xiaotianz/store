@@ -46,3 +46,8 @@
      transition: all 0.5s ease
 }
 ```
+## 通过vue-resource发起get请求 
+1. 启动phpstudy本地服务器
+2. mysql上面存放了两个网址 通过 站点域名管理给这个目录添加一个网址
+3. 在get方法中第一个参数则是这个php文件地址 通过 php获取数据库地址 然后返回给data
+4. 因为不熟悉php 所以手动添加的数组对象 然后 通过v-for指令 渲染数据

@@ -2,10 +2,9 @@
       <div>
           <!-- 轮播组件 -->
            <mt-swipe :auto="4000">
-                <mt-swipe-item>1</mt-swipe-item>
-                <mt-swipe-item>2</mt-swipe-item>
-                <mt-swipe-item>3</mt-swipe-item>
-                <mt-swipe-item>4</mt-swipe-item>
+                 <mt-swipe-item v-for="item in lunbolist" :key="item.url">
+                    <img :src="item.url" alt="">
+                </mt-swipe-item>
            </mt-swipe>
            
     <!-- 六宫格组件 -->
@@ -33,27 +32,70 @@
 </template>
 
 <script>
-    
+    export default {
+         data(){
+             return{
+                lunbolist:[]// 保存获取过来的list
+             }
+         },
+        created() {    //组件初始化时调用这个方法
+		 this.getinfo();
+	},
+	    methods:{
+		    getinfo: function () {      //vue-resource 插件实例方法  需要启动phpstudy 因为是通过端口访问的网站
+                this.$http.get("http://www.vue.stdio.io/banner.php").then(function (data) {
+                console.log(data);
+                // console.log(databody);
+                if(data.status==200){
+                    //this.lunbolist=data.body;
+                   this.lunbolist=[   //获取服务器数据后 手动添加为一个数组对象
+                    
+                        {
+                           name:"img0",
+                           url:data.body[0],
+                        },
+                        {
+                           name:"img1",
+                           url:data.body[1], 
+                        }
+
+                        
+                   ] 
+
+                   console.log(this.lunbolist);
+
+                } else{
+                    console.log('失败');
+                }
+                })
+            },
+	}
+
+    }
 </script>
 
 <style lang="less" scoped>
-// 手动给mint-swipe这个元素一个高度 让他显示出来
+// 手动给mint-swipe这个元素一个高度 让轮播图显示出来
     .mint-swipe{      
         height: 200px;
     }
     .mint-swipe-item{
 //      交集选择器
         &:nth-child(1){
-           background: red;
+        //    background: red;
       }
         &:nth-child(2){
-           background: pink;
+        //    background: pink;
       }
         &:nth-child(3){
            background: blue;
       }
         &:nth-child(4){
            background: lightgreen
+      }
+      img{
+           width: 100%;
+           height: 100%;   
       }
     }
     .mui-grid-view.mui-grid-9{
