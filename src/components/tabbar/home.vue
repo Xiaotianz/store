@@ -46,7 +46,7 @@
                 this.$http.get("http://www.vue.stdio.io/banner.php").then(function (data) {
                 console.log(data);
                 // console.log(databody);
-                if(data.status==200){
+                if(data.status==200){   //判断状态
                     //this.lunbolist=data.body;
                    this.lunbolist=[   //获取服务器数据后 手动添加为一个数组对象
                     
