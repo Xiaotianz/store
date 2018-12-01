@@ -15,7 +15,7 @@ Vue.http.options.emulateJSON = true;
 import router from "./router.js"
 
 //按需导入mint-ui 轮播图 
-import { Swipe,SwipeItem} from "mint-ui"
+import { Swipe,SwipeItem,} from "mint-ui"
 import "mint-ui/lib/style.css"
 // 安装轮播图组件
 Vue.component(Swipe.name,Swipe);

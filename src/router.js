@@ -6,6 +6,7 @@ import home from "./components/tabbar/home.vue"
 import menber from "./components/tabbar/menber.vue"
 import shopcar from "./components/tabbar/shopcar.vue"
 import setting from "./components/tabbar/setting.vue"
+import newsmessage from "./components/news/news.vue"
 
 //创建路由模块
 var router=new VueRouter({
@@ -14,7 +15,8 @@ var router=new VueRouter({
       {path:"/home",component:home},
       {path:"/menber",component:menber},
       {path:"/shopcar",component:shopcar},
-      {path:"/setting",component:setting}
+      {path:"/setting",component:setting},
+      {path:"/news",component:newsmessage}
 
     ],
     linkActiveClass:"mui-active"

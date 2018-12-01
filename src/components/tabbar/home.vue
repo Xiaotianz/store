@@ -9,9 +9,12 @@
            
     <!-- 六宫格组件 -->
            <ul class="mui-table-view mui-grid-view mui-grid-9">
-                <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4"><a href="#">
+                    <!-- 改为路由 -->
+                <router-link to="news" class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
                         <img src="../../images/menu1.png" alt="">
-                        <div class="mui-media-body">新闻资讯</div></a></li>
+                        <div class="mui-media-body">新闻资讯</div>
+                </router-link>
+
                 <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4"><a href="#">
                         <img src="../../images/menu2.png" alt="">
                         <div class="mui-media-body">图片分享</div></a></li>
@@ -43,12 +46,13 @@
 	},
 	    methods:{
 		    getinfo: function () {      //vue-resource 插件实例方法  需要启动phpstudy 因为是通过端口访问的网站
-                this.$http.get("http://www.vue.stdio.io/banner.php").then(function (data) {
+                this.$http.get("http://www.vue.stdio.io/api/lunbotu/").then(function (data) {
                 console.log(data);
                 // console.log(databody);
                 if(data.status==200){   //判断状态
                     //this.lunbolist=data.body;
-                   this.lunbolist=[   //获取服务器数据后 手动添加为一个数组对象
+                   this.lunbolist=
+                   [   //获取服务器数据后 手动添加为一个数组对象
                     
                         {
                            name:"img0",
@@ -57,10 +61,7 @@
                         {
                            name:"img1",
                            url:data.body[1], 
-                        }
-
-                        
-                        
+                        }    
                    ] 
 
                    console.log(this.lunbolist);
