@@ -10,10 +10,12 @@
     <!-- 六宫格组件 -->
            <ul class="mui-table-view mui-grid-view mui-grid-9">
                     <!-- 改为路由 -->
-                <router-link to="news" class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+                <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+                    <router-link to="/home/news">
                         <img src="../../images/menu1.png" alt="">
                         <div class="mui-media-body">新闻资讯</div>
-                </router-link>
+                    </router-link>
+                </li>
 
                 <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4"><a href="#">
                         <img src="../../images/menu2.png" alt="">
@@ -43,7 +45,7 @@
          },
         created() {    //组件初始化时调用这个方法
 		 this.getinfo();
-	},
+	    },
 	    methods:{
 		    getinfo: function () {      //vue-resource 插件实例方法  需要启动phpstudy 因为是通过端口访问的网站
                 this.$http.get("http://www.vue.stdio.io/api/lunbotu/").then(function (data) {

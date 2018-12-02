@@ -52,9 +52,57 @@
 3. 在get方法中第一个参数则是这个php文件地址 通过 php获取数据库地址 然后返回给data
 4. 因为不熟悉php 所以手动添加的数组对象 然后 通过v-for指令 渲染数据  
 
-#新闻资讯板块
+##新闻资讯板块
 1. mysql里面存放的数据通过php获取 然后返回json格式的数组
 2. 把mui里面的media-list作为页面的模板 数据是ajax请求服务器来完成的
 3. 请求完成后,通过v-for来渲染页面中的数据
 
-#新闻资讯详情
+##新闻详情板块
+1. 首先在组件中写好模板 模板的主要信息来源于数据库
+2. 通过ajax进行请求 请求回来的数据通过插件表达式的方式进行渲染
+3. content里面的内容是用html标签来渲染的 所以内容需要用指令v-html 进行绑定渲染
+
+### 登录和注册思路 目前登录显示的只有评论组件
+## 登录思路
+1. 通过get方式把输入的账号和密码通过yi下形式进行传递
+```
+this.$http.get("http://www.vue.stdio.io/api/login/",{params:{username:this.username,password:this.password}})
+```  
+2. 后端获取到数据库的数据和传递过来的数据进行比对
+3. 正确返回yes 页面进行跳转
+4. 评论组件中 用户姓名显示用户账号名称
+## 注册思路
+1. 通过post传参把用户输入的注册信息传递给后端
+```
+ <?php
+error_reporting(0);
+$code = $_POST["code"];
+$name = $_POST["name"];
+$date  = $_POST["date"];
+$age = $_POST["age"];
+$job = $_POST["job"];
+$department  = $_POST["department"];
+$month = $_POST["month"];
+$year = $_POST["year"];
+$politics = $_POST["politics"];
+$health = $_POST["health"];
+
+$db = new MySQLi("localhost","root","123456","study");
+!mysqli_connect_error() or die("连接失败！");
+$sql = "insert into `员工信息` values('{$code}','{$name}','{$date}',
+'{$age}','{$job}','{$department}','{$month}','{$year}','{$politics}','{$health}')";
+$result = $db->query($sql);
+if($result)
+{
+header("location:work.php");
+}
+else
+{
+echo "添加失败！";
+}
+?>
+--------------------- 
+```
+3. 通过以上方法进行数据的添加 
+4. 添加完成后页面跳转至登录页
+5. 登录完成进行登录思路的第4步

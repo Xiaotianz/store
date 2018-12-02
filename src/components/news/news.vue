@@ -1,7 +1,7 @@
 <template>
      			<ul class="mui-table-view">
 				<li class="mui-table-view-cell mui-media" v-for="itemnews in newslist" :key="itemnews.id">
-					<a href="javascript:;">
+					<router-link :to="'/home/newsinfo/'+itemnews.id">
 						<img class="mui-media-object mui-pull-left" :src="itemnews.url">
 						<div class="mui-media-body">
 							<h1>{{itemnews.title}}</h1>
@@ -10,7 +10,7 @@
                                 <span>点击:{{itemnews.click}}次</span>
                             </p>
 						</div>
-					</a>
+					</router-link>
 				</li>
 				<!-- <li class="mui-table-view-cell mui-media">
 					<a href="javascript:;">
@@ -54,10 +54,11 @@ import { Toast } from "mint-ui"
 	    },
 	    methods:{
 		    getnews: function () {      //vue-resource 插件实例方法  需要启动phpstudy 因为是通过端口访问的网站
-                this.$http.get("http://www.vue.stdio.io/api/news/").then(function (newsdata) {
+                this.$http.get("http://www.vue.stdio.io/api/newslist/").then(function (newsdata) {
                         if(newsdata.status==200){
                              this.newslist=newsdata.body;
-                            //  Toast("获取失败")
+                            //  Toast("获取失败");
+                            //  console.log(this.newslist);
                         }else{
                              Toast("获取失败")
                         }
@@ -85,7 +86,6 @@ import { Toast } from "mint-ui"
    .mui-table-view {
     position: relative;
     margin-top: 0;
-    margin-bottom: 50px;
     padding-left: 0;
     list-style: none;
     background-color: #fff;

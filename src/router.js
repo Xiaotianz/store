@@ -7,21 +7,21 @@ import menber from "./components/tabbar/menber.vue"
 import shopcar from "./components/tabbar/shopcar.vue"
 import setting from "./components/tabbar/setting.vue"
 import newsmessage from "./components/news/news.vue"
+import newsinfo from "./components/news/newsinfo.vue"
 
 //创建路由模块
 var router=new VueRouter({
-    routes:[
+    routes:[   //配置路由规则
       {path:"/",redirect:"/home"},
       {path:"/home",component:home},
       {path:"/menber",component:menber},
       {path:"/shopcar",component:shopcar},
       {path:"/setting",component:setting},
-      {path:"/news",component:newsmessage}
-
+      {path:"/home/news",component:newsmessage},
+      {path:"/home/newsinfo/:id",component:newsinfo}
     ],
-    linkActiveClass:"mui-active"
+    linkActiveClass:"mui-active",
 
- 
 })
 
 //把路由对象暴露出去
