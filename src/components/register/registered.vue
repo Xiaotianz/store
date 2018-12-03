@@ -1,0 +1,24 @@
+<template>
+        <form class="mui-input-group">
+    <div class="mui-input-row">
+        <label>用户名</label>
+    <input type="text" class="mui-input-clear" placeholder="请输入用户名">
+    </div>
+    <div class="mui-input-row">
+        <label>密码</label>
+        <input type="password" class="mui-input-password" placeholder="请输入密码">
+    </div>
+    <div class="mui-button-row">
+        <button type="button" class="mui-btn mui-btn-primary" >确认</button>
+        <button type="button" class="mui-btn mui-btn-danger" >取消</button>
+    </div>
+</form>
+</template>
+
+<script>
+    
+</script>
+
+<style lang="less" scoped>
+
+</style>
