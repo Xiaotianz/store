@@ -1,24 +1,86 @@
 <template>
-        <form class="mui-input-group">
-    <div class="mui-input-row">
-        <label>用户名</label>
-    <input type="text" class="mui-input-clear" placeholder="请输入用户名">
+    <div class="registers">
+               <h3>注册账号</h3>
+         <div class="mui-input-row mui-password">
+				<input type="text" class="mui-input-password" data-input-password="2" placeholder="输入账号" v-model="username"> 
+                <!-- <span class="mui-icon mui-icon-eye"></span> -->
+		 </div>
+         <div class="mui-input-row mui-password">
+				<input type="password" class="mui-input-password" data-input-password="2" placeholder="输入密码" v-model="password"> 
+                <!-- <span class="mui-icon mui-icon-eye"></span> -->
+		 </div>
+         <div class="mui-input-row mui-password">
+				<input type="password" class="mui-input-password" data-input-password="2" placeholder="确认密码" v-model="passwords">  
+                <!-- <span class="mui-icon mui-icon-eye mui-active"></span> -->
+		 </div>
+        <div class="mui-input-row mui-password">
+				<input type="text" class="mui-input-password" data-input-password="2" placeholder="输入用户名" v-model="accountname"> 
+                <!-- <span class="mui-icon mui-icon-eye"></span> -->
+		 </div>
+        <router-link :to="gouhuiyuan"><button class="mui-btn mui-btn-primary" @click="postdata();">注册</button></router-link> 
     </div>
-    <div class="mui-input-row">
-        <label>密码</label>
-        <input type="password" class="mui-input-password" placeholder="请输入密码">
-    </div>
-    <div class="mui-button-row">
-        <button type="button" class="mui-btn mui-btn-primary" >确认</button>
-        <button type="button" class="mui-btn mui-btn-danger" >取消</button>
-    </div>
-</form>
+   
 </template>
 
-<script>
+<script> 
+import { Toast } from "mint-ui"
+  export default{
+    data(){
+       return{
+           username:"",
+           password:"", 
+           passwords:"",
+           accountname:"",
+           gouhuiyuan:"",
+       }
+    },
+    methods:{
+        get:function(){
+          var ti= this.gouhuiyuan="/menber/registe/huiyuan"
+            setTimeout(ti,3000);
+        },
+        postdata:function(){  
+           this.$http.get("http://www.vue.stdio.io/api/register/",
+            {
+                params:{
+                        username:this.username,
+                        password:this.password,
+                        accountname:this.accountname
+                }
+            }
+        ).then(function(data){
+            console.log(data);
+            if(data.body=="ok"){
+                Toast("注册成功");
+                this.get();
+            }else if(data.body=="no"){
+                Toast("注册失败");
+            }else if(data.body=="err_error"){
+                Toast("请填写内容");
+            }
+          })       
+        }
+    },
+    getbifo:function(){
+        console.log(this.gouhuiyuan);
+    }
+  }
     
 </script>
 
 <style lang="less" scoped>
+     .registers{
+         margin: 0 4px;
+         padding-top:20px;
+        h3{
+         padding: 5px 0;
+          text-align: center;
+          font-size:  16px;
+        }
+        button{
+            position: relative;
+            width: 100%;
+        }
 
+     }
 </style>
