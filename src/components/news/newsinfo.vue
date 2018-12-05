@@ -10,12 +10,16 @@
         <div class="content" v-html="newsinfo.content">
              
         </div>
+
+        <comment-box></comment-box>    
    </div>
 </div>
 
 </template>
 
 <script>
+   import comment from "../comment/commentsom.vue"   //引入评论组件
+
     export default{
        data(){
           return{
@@ -43,7 +47,10 @@
                    }
             })
          }
-       }
+       },
+       components:{      //组件方法
+         "comment-box":comment,      //组件名称 绑定 引入的组件 
+      }
     }
 </script>
      

@@ -22,7 +22,7 @@ var router=new VueRouter({
       {path:"/home/news",component:newsmessage},  //新闻资讯
       {path:"/home/newsinfo/:id",component:newsinfo},   //新闻详情
       {path:"/menber/registe",component:register},     //注册
-      {path:"/menber/registe/huiyuan",component:huiyuan}      //会员详情页
+      {path:"/menber",component:menber}       //登录页
     ],
     linkActiveClass:"mui-active",
 

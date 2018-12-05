@@ -49,7 +49,7 @@
 	    methods:{
 		    getinfo: function () {      //vue-resource 插件实例方法  需要启动phpstudy 因为是通过端口访问的网站
                 this.$http.get("http://www.vue.stdio.io/api/lunbotu/").then(function (data) {
-                console.log(data);
+                // console.log(data);
                 // console.log(databody);
                 if(data.status==200){   //判断状态
                     //this.lunbolist=data.body;
@@ -66,10 +66,10 @@
                         }    
                    ] 
 
-                   console.log(this.lunbolist);
+                //    console.log(this.lunbolist);
 
                 } else{
-                    console.log('失败');
+                    console.log('获取失败');
                 }
                 })
             },
