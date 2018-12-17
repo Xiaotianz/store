@@ -21,6 +21,7 @@
 
 import mui from "../../mui/js/mui.min.js"
 
+
 export default{
     data(){
         return{
@@ -56,24 +57,39 @@ export default{
 			  }
 		  })
 	  },
-	  //获取图片信息
+	  //获取全部图片
 	  getshareinfo:function() {
 		  
 		//   console.log(keyid);
 		 this.$http.get("http://www.vue.stdio.io/api/shareinfo/").then(function(data){
             // console.log(data);
 			// this.info = data.body.message;
-			if(data.body.status==200){
+			if(data.status==200){
 				this.info = data.body.message;
 			}
 			 
 		 })
 	  },
+	  //点击title切换相应图片
 	  getshareclick:function(keyid){
-         console.log(keyid);
+		this.$http.get("http://www.vue.stdio.io/api/sharetitleinfo/?ifid="+keyid).then(function(data){
+            if(data.body.ifid == keyid){
+				this.info = data.body.message[keyid];
+				console.log(typeof  this.info);
+				// 
+				
+				// console.log(typeof data.body.message);
+				// this.info= this.info[keyid];
+				// // this.info = test;
+			}else{
+				console.log("error")
+			}
+		 })
+		  
+		}
 		 
-	  } 
-	}
+	} 
+	
 }
 </script>
 
