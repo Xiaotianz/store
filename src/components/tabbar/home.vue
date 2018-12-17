@@ -2,8 +2,8 @@
       <div>
           <!-- 轮播组件 -->
            <mt-swipe :auto="4000">
-                 <mt-swipe-item v-for="item in lunbolist" :key="item.url">
-                    <img :src="item.url" alt="">
+                 <mt-swipe-item v-for="item in lunbolist" :key="item.ID">
+                    <img :src="item.URL" alt="">
                 </mt-swipe-item>
            </mt-swipe>
            
@@ -54,20 +54,22 @@
                 this.$http.get("http://www.vue.stdio.io/api/lunbotu/").then(function (data) {
                 // console.log(data);
                 // console.log(databody);
-                if(data.status==200){   //判断状态
-                    //this.lunbolist=data.body;
-                   this.lunbolist=
-                   [   //获取服务器数据后 手动添加为一个数组对象
+                if(data.body.status==200){   //判断状态
+                    this.lunbolist=data.body.message;
+                    console.log(this.lunbolist);
+                    // console.log(data);
+                //    this.lunbolist=
+                //    [   //获取服务器数据后 手动添加为一个数组对象
                     
-                        {
-                           name:"img0",
-                           url:data.body[0],
-                        },
-                        {
-                           name:"img1",
-                           url:data.body[1], 
-                        }    
-                   ] 
+                //         {
+                //            name:"img0",
+                //            url:data.body[0],
+                //         },
+                //         {
+                //            name:"img1",
+                //            url:data.body[1], 
+                //         }    
+                //    ] 
 
                 //    console.log(this.lunbolist);
 

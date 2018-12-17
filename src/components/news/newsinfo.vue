@@ -48,7 +48,7 @@
             })
          }
        },
-       components:{      //组件方法
+       components:{      //组件方法  评论子组件
          "comment-box":comment,      //组件名称 绑定 引入的组件 
       }
     }
