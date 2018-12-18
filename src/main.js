@@ -14,15 +14,19 @@ Vue.http.options.emulateJSON = true;
 //导入路由模块
 import router from "./router.js"
 
-//按需导入mint-ui 轮播图 
-import { Swipe,SwipeItem,Button,Lazyload} from "mint-ui"
-import "mint-ui/lib/style.css"
-// 安装轮播图组件
-Vue.component(Swipe.name,Swipe,);
-Vue.component(SwipeItem.name,SwipeItem);
-Vue.component(Button.name,Button);
+//全部导入mint-ui
 
-Vue.use(Lazyload);
+import MintUI from "mint-ui"
+Vue.use(MintUI);
+//按需导入mint-ui 轮播图 
+// import { Swipe,SwipeItem,Button,Lazyload} from "mint-ui"
+import "mint-ui/lib/style.css"
+// // 安装轮播图组件
+// Vue.component(Swipe.name,Swipe,);
+// Vue.component(SwipeItem.name,SwipeItem);
+// Vue.component(Button.name,Button);
+
+// Vue.use(Lazyload);
 
 
 var vm=new Vue({
