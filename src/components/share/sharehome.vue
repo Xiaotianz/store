@@ -8,7 +8,7 @@
 					</div>
 					<ul class="list-content">
  						<li v-for="item in list" :key="item.id">
-   							<img v-lazy="item.imgurl">
+   							<img v-lazy="item.url">
  						</li>
 					</ul>
 				</div>
@@ -46,9 +46,9 @@ export default{
 	methods:{
 		//获取图片title
 		gettitle:function(){
-			this.$http.get("http://www.vue.stdio.io/api/sharetitle/").then((data)=>{
+			this.$http.get("http://localhost:3000/api/sharetitle").then((data)=>{
                 if(data.status==200){
-					this.title = data.body ;
+					this.title = data.body.message ;
 					this.title.unshift({"id":"0","title":"全部"}); 
 				}
 				// console.log(data);
@@ -56,11 +56,11 @@ export default{
 
 		},
 		getinfo:function(keyid){
-			this.$http.get("http://www.vue.stdio.io/api/sharetitle/",{params:keyid}).then((data)=>{
+			this.$http.get("http://localhost:3000/api/shareinfos",{params:keyid}).then((data)=>{
                 if(data.status==200){
-					this.list = data.body ;
+					this.list = data.body.message ;
 				}
-				// console.log(data);
+				console.log(data);
 			})
 		}
 	

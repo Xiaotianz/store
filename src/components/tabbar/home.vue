@@ -51,7 +51,7 @@
 	    },
 	    methods:{
 		    getinfo: function () {      //vue-resource 插件实例方法  需要启动phpstudy 因为是通过端口访问的网站
-                this.$http.get("http://www.vue.stdio.io/api/lunbotu/").then(function (data) {
+                this.$http.get("http://localhost:3000/api/lunbourl").then(function (data) {
                 // console.log(data);
                 // console.log(databody);
                 if(data.body.status==200){   //判断状态

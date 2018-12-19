@@ -34,13 +34,14 @@
        },
        methods:{
          getnewsinfo:function(){
-            this.$http.get("http://www.vue.stdio.io/api/newsinfo/").then(function(newsinfo){
+            this.$http.get("http://localhost:3000/api/newsinfo").then(function(newsinfo){
+               console.log(newsinfo.body.message[0].id);
                   // console.log(this.newsinfo);
                   // console.log(typeof newsinfo.body[this.id-1].id);
                   // console.log(typeof this.id);
                   // console.log(this.id=this.id-1);
-                   if(newsinfo.body[this.id-1].id==this.id){ //通过传递过来的id来判断是否与当前数据库给id相同
-                      this.newsinfo=newsinfo.body[this.id-1];          //把当前获取过来的数组 给newsinfo:[],
+                   if(newsinfo.body.message[this.id-1].id==this.id){ //通过传递过来的id来判断是否与当前数据库给id相同
+                      this.newsinfo=newsinfo.body.message[this.id-1];          //把当前获取过来的数组 给newsinfo:[],
                       console.log(this.newsinfo);
                    }else{
                       console.log("oh on");

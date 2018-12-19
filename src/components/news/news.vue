@@ -54,9 +54,9 @@ import { Toast } from "mint-ui"
 	    },
 	    methods:{
 		    getnews: function () {      //vue-resource 插件实例方法  需要启动phpstudy 因为是通过端口访问的网站
-                this.$http.get("http://www.vue.stdio.io/api/newslist/").then(function (newsdata) {
+                this.$http.get("http://localhost:3000/api/newslist").then(function (newsdata) {
                         if(newsdata.status==200){
-                             this.newslist=newsdata.body;
+                             this.newslist=newsdata.body.message;
                             //  Toast("获取失败");
                             //  console.log(this.newslist);
                         }else{
