@@ -53,10 +53,13 @@ import { Toast } from "mint-ui"
 		 this.getnews();
 	    },
 	    methods:{
-		    getnews: function () {      //vue-resource 插件实例方法  需要启动phpstudy 因为是通过端口访问的网站
+            getnews: function () {      //vue-resource 插件实例方法  需要启动phpstudy 因为是通过端口访问的网站
+            // http://localhost:3000/api/newslist
                 this.$http.get("http://localhost:3000/api/newslist").then(function (newsdata) {
+                    console.log(newsdata);
                         if(newsdata.status==200){
                              this.newslist=newsdata.body.message;
+                            //  console.log(this.newslist);
                             //  Toast("获取失败");
                             //  console.log(this.newslist);
                         }else{
