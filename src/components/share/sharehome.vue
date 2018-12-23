@@ -7,13 +7,13 @@
 				</a>
 			</div>
 				<ul class="list-content">
- 					<li v-for="item in all" :key="item.id">
+ 					<router-link v-for="item in all" :key="item.id" :to="'/home/share/shareinfo/'+item.id" tag="li">
    						<img v-lazy="item.url">
 						<div class="info">
 							<h2 class="img-title">{{item.imgjieshao}}</h2>
 							<div class="img-jieshao">{{item.imgxiangqing}}</div>	
 						</div>
- 					</li>
+ 					</router-link>
 				</ul>
 		</div>
 	</div>
@@ -22,16 +22,12 @@
 
 <script>
 // import $ from "jquery"
-
 import mui from "../../mui/js/mui.min.js"
-import { sep } from 'path';
-
 
 export default{
     data(){
         return{
 			title:[],
-			imglist:[],
 			all:[],
         }
     },
@@ -70,14 +66,9 @@ export default{
 			})			 	
 		 },
 		 gettitleinfo:function(keyid){
-			//  console.log(keyid);
-			//  console.log(this.imglist[keyid-1].ifid);
-
 			this.$http.get("http://localhost:3000/api/shareinfo/?id="+keyid).then(function(data){
-				// console.log(data);
-				this.all= [];
+				this.all= [];  //清空这个all数组
 				if(data.status==200){
-						//一条数据不允许直接等于 需要使用unshift插入
 						this.all = data.body.message;
 				}
 			})		
@@ -122,13 +113,18 @@ export default{
 			position: absolute;
 			bottom:0;
 			// padding: 0 5px;
+			color:#fff;
+			font-size: 12px;
 			
 			background: rgba(0,0,0, 0.5);
 			.img-title{
-				font-size: 16px;
+				padding-left:5px;
+				font-size: 12px;
+				text-align: left
 			}
 			.img-jieshao{
-				text-align: left
+				text-align: left;
+				padding-left:5px;
 			}
 		}
 	}

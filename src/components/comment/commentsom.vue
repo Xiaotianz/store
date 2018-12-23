@@ -59,16 +59,16 @@
             }
         },
         created(){
-             this.getcoment();
+            //  this.getcoment();
         },
         methods:{
-            getcoment:function(){
-               this.$http.get("http://www.vue.stdio.io/api/comment/").then(function(comment){
-                   this.commentlist=comment.body;
-                  console.log(this.commentlist);
-               })
+            // getcoment:function(){
+            //    this.$http.get("http://www.vue.stdio.io/api/comment/").then(function(comment){
+            //        this.commentlist=comment.body;
+            //       console.log(this.commentlist);
+            //    })
 
-            }
+            // }
         },
         // props:["id"],
 
