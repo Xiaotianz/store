@@ -1,4 +1,5 @@
 <template>
+
     <div class="content—all">
         <h3 class="title">{{share_xq_title.title}}</h3>
         <div class="timer">
@@ -8,11 +9,13 @@
         <hr>
 
         <!-- 缩略图 -->
+            <vue-preview :slides="list" class="img" id="imgs"></vue-preview>
 
         <div class="content">
-            <!-- {{share_xq_title.con}} -->
+            {{share_xq_title.content}}
         </div>
     </div> 
+    
 </template>
 
 <script>
@@ -20,11 +23,13 @@ export default {
     data(){
         return{
             id:this.$route.params.id,
-            share_xq_title:[],
+            share_xq_title:[],  //除图片外的其他内容
+            list:[], //图片
         }
     },
     created(){
         this.getshare_xq_title();
+        this.getimg();
     },
     methods:{
         getshare_xq_title:function(){
@@ -35,10 +40,25 @@ export default {
                 }
             })
 
-        }
+        },
+        getimg:function(){
+            this.$http.get("http://localhost:3000/api/suoluetu/?id="+this.id).then((data)=>{
+                // console.log(data.status);
+                if(data.status == 200){
+                    // this.list = data.body.message;
+                    data.body.message.forEach(item =>{
+                        item.w = 600;
+                        item.h = 400;
+                    });
+                 this.list =data.body.message;
+                //  console.log(this.list);
+                }
+            })
+        },
     }
 
 }
+
 </script>
 
 
