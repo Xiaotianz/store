@@ -12,6 +12,7 @@ import register from "./components/register/registered.vue"
 // import huiyuan from "./components/register/huiyuan.vue"
 import share from "./components/share/sharehome.vue"
 import shareinfo from "./components/share/shareinfo.vue"
+import shopping from "./components/shopping/shopping.vue"
 
 
 //创建路由模块
@@ -28,6 +29,7 @@ var router=new VueRouter({
       {path:"/menber",component:menber},       //登录页
       {path:"/home/share",component:share},    //图片分享
       {path:'/home/share/shareinfo/:id',component:shareinfo},//图片分享详情
+      {path:'/home/shopping',component:shopping}
     ],
     linkActiveClass:"mui-active",
 
