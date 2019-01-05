@@ -17,8 +17,7 @@
 				<input type="text" class="mui-input-password" data-input-password="2" placeholder="输入用户名" v-model="accountname"> 
                 <!-- <span class="mui-icon mui-icon-eye"></span> -->
 		 </div>
-        <router-link :to="goishuiyuan"><button class="mui-btn mui-btn-primary" @click="postdata();">注册</button></router-link> 
-        
+      <router-link to="/menber">  <button class="mui-btn mui-btn-primary" @click="registerPost">注册</button> </router-link>
     </div>
    
 </template>
@@ -32,37 +31,21 @@ import { Toast } from "mint-ui"
            password:"", 
            passwords:"",
            accountname:"",
-           goishuiyuan:""
        }
     },
     methods:{
-        //传递输入账号和密码
-        postdata:function(){
-          if(this.password===this.passwords){
-            this.$http.get("http://www.vue.stdio.io/api/register/",
-            {
-                params:{
-                        username:this.username,
-                        password:this.password,
-                        accountname:this.accountname
-                }
-            }
-        ).then(function(data){
-            if(data.body=="ok"){
-                Toast("注册成功");
-                // this.get();
-                this.goishuiyuan="/menber";
-            }else if(data.body=="no"){
-                Toast("注册失败");
-            }else if(data.body=="err_error"){
-                Toast("请填写内容");
-            }
-          })  
-          }else{
-              this.goishuiyuan="";
-              Toast("确认密码错误，请重新输入");
-          } 
-        }
+        //传递输入账号和密码'
+        registerPost:function(){
+            //把用户输入的信息提交给后台
+            this.$http.post("http://localhost:3000/api/register/?username="+this.username+"&password="+this.password+"&accountname="+this.accountname,{emulate:true}).then(data =>{
+                if(data.body.message == "ok"){
+                    Toast("注册成功");
+                }else{
+                    
+                };
+            });
+             
+        },
     },
   }
     

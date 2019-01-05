@@ -1,11 +1,14 @@
 <template>
       <div>
           <!-- 轮播组件 -->
-           <mt-swipe :auto="4000">
+           <!-- <mt-swipe :auto="4000">
                  <mt-swipe-item v-for="item in lunbolist" :key="item.ID">
                     <img :src="item.URL" alt="">
                 </mt-swipe-item>
-           </mt-swipe>
+           </mt-swipe> -->
+           <swipe :lunbolist="lunbolist" :isfull="true"></swipe>  
+           <!-- :lunbolist="lunbolist 传递给轮播图组件数据   -->
+           <!-- :isfull="true"  判断宽度是否100% -->
            
     <!-- 六宫格组件 -->
            <ul class="mui-table-view mui-grid-view mui-grid-9">
@@ -43,6 +46,7 @@
 </template>
 
 <script>
+import swipe from "../comment/lunbocomment.vue";  //导入轮播图组件
     export default {
          data(){
              return{
@@ -81,8 +85,10 @@
                 }
                 })
             },
-	}
-
+        },
+        components:{   //谁用到轮播图 就调用这个
+            "swipe":swipe
+        }
     }
 </script>
 

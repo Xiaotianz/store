@@ -1,6 +1,6 @@
 <template>
     <div class="goods-list">
-        <div class="goods-item" v-for="item in list" :key="item.id">
+        <div class="goods-item" v-for="item in list" :key="item.id" @click="goshopinfo(item.id)">
             <img :src="item.maxurl">
             <div class="info">
               <h1 class="title">{{item.title}}</h1>
@@ -51,8 +51,14 @@ export default {
                 }
            });
            this.isshow = false;
-        }
+        },
+        goshopinfo:function(id){
+            //编程式导航跳转将采用 命名的路由进行匹配 
+            this.$router.push({name:"shopinfo",params:{id:id}}) //name：指向命名的路由, id：传递的参数
+            console.log(this);
+    }
     },
+    //页面跳转不将使用router-link进行路由跳转 ，而是采用编程式导航进行跳转 具体api 参考vue-router 官方文档;
 }
 </script>
 

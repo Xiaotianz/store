@@ -1,119 +1,56 @@
-#基于vue的项目              
+# 基于Vue.js的第一个练手项目
+## 基于 vue.js + webpack + node.js 的一个项目 
+## 项目所用到的css库和插件如下
+### 整体框架：Vue.js;
+1. 项目所用到的库：
+  + mui，mint-ui,
+2. 项目所用到的插件：
+  + vue-route, vue-resource, vue-preview,
+3. webpack
+  + 主要用于项目的打包, 处理每个相应loader
+4. nodejs
+  + 主要用于写数据接口,接口返回数据的实现
 
-1. 完成header区域使用的是mui中的header组件
-2. 制作底部的Tabbar区域，使用的是mui的tabbar组件
+#### 以下内容是写某个组件实现功能的思路和一些有趣的事情
+
+1. 首先是创建一个项目骨架 npm i 初始化项目
+2. npm i vue.js ···· 等等一些库和插件 
+3. 首先是创建一个main.js; 这个js是项目的入口文件 
+  + 里面主要是引入一些项目依赖的框架和库, 因为整体框架是vue,所有还要在main.js中 创建一个vm的实例,挂载路由 
+		```
+		var vm=new Vue({
+		el:"#app",
+		methods:{},
+		//    渲染组件
+		render:function(creaElement){
+			return creaElement(app);
+		},
+			//挂载路由
+			router
+		})
+
+		```
+4. 路由模块已经被抽离出来,router.js 這个文件主要是配置路由规则;  
+
+#### 准备工作完毕, 进入项目首页编写;  
+1. 配置路由规则, 在启动项目 hash值为 / 时 进入首页; 
+ ``` 
+ {path:"/",redirect:"/home"},
+
+ ```
+##### 首页思路
+1. 主要是调用mui的样式库 
+
+2. 完成header区域使用的是mui中的header组件
+3. 制作底部的Tabbar区域，使用的是mui的tabbar组件
  + 在制作购物车小图标时，需要引入icons-extra.css这个样式
  + 还要拷贝扩展字体库mui.ttf文件
  + 添加样式"mui-icon mui-icon-extra mui-icon-extra-cart"
-3. 中间区域防止router-view用于路由来匹配展示的组件
+4. 中间区域防止router-view用于路由来匹配展示的组件
 
-## 改造tabbar为router-link
-1. 导入路由包
-2. 改变组件中的a链接为rout-link href改变为to  
+##### 首页难点1: 轮播图数据的获取;
+1. 难点1: 没有数据接口 数据要从SQL获取, 
+ 解决方案: 使用php写数据接口,  php去读取sql的数据 然后返回给前端 
+2. 通过vue-resource 进行请求服务器,
+ 请求服务器时, 因为服务器与我的项目不在同一个端口下 所以中间存在一个跨域的问题, 
 
-## 设置路由高亮
-1. 改变router-link-active 为mui的 active
-
-## 轮播图 直接引入mint-ui的 swipe组件 
-1. 数据获取思路
-  + 配置可本地访问的数据接口 这个接口存放的是一个url地址
-  + 通过vue-resource中this.$http()这个方法进行ajax请求
-  + 数据获取成功，渲染在页面中
-## 六宫格
-1. 主要是样式的修改
-
-## 组件动画切换 
-1. 使用overflow 实现右侧页面隐藏 .v-enter和.v-leave-to 分离写法 实现右侧进入 左侧离开 
-2. position：实现组件内容从下往上进入的bug
- ```
- .app-container{
-	padding-top:40px;     
-	overflow-x: hidden;     //右侧隐藏 当我这个页面还没有出去的时候 右侧的页面隐藏
-}
-.v-enter,         
-{     
-	opacity: 0;
-	transform: translateX(100%);
-}
-.v-leave-to{
-	opacity: 0;
-	transform: translateX(-100%);
-	position: absolute;
-    
-}
-.v-enter-active,   
-.v-leave-active{
-     transition: all 0.5s ease
-}
-```
-## 通过vue-resource发起get请求 
-1. 启动phpstudy本地服务器
-2. mysql上面存放了两个网址 通过 站点域名管理给这个目录添加一个网址
-3. 在get方法中第一个参数则是这个php文件地址 通过 php获取数据库地址 然后返回给data
-4. 因为不熟悉php 所以手动添加的数组对象 然后 通过v-for指令 渲染数据  
-
-##新闻资讯板块
-1. mysql里面存放的数据通过php获取 然后返回json格式的数组
-2. 把mui里面的media-list作为页面的模板 数据是ajax请求服务器来完成的
-3. 请求完成后,通过v-for来渲染页面中的数据
-
-##新闻详情板块
-1. 首先在组件中写好模板 模板的主要信息来源于数据库
-2. 通过ajax进行请求 请求回来的数据通过插件表达式的方式进行渲染
-3. content里面的内容是用html标签来渲染的 所以内容需要用指令v-html 进行绑定渲染  
-
-##评论组件
-1. 因为在页面的很多地方都会有这个组件 所以创建一个子组件 用于评论组件 将来 哪个组件中想使用这个组件 则只需要一下步骤即可使用评论组件
-2. 创建一个comment.vue的评论子组件 他不受路由控制
-3. 在需要的页面中引入一下这个子组件 import comment from "./comment.vue" 
-4. 在methods中定义 components这个方法
-5. 在这个方法中 定义 一个组件名称 将来使用这个组件名称来渲染页面 
-6. 组件名称 绑定的 是 引入的comment这个评论子组件 
-
-### 登录和注册思路 目前登录显示的只有评论组件
-## 登录思路
-1. 通过get方式把输入的账号和密码通过yi下形式进行传递
-```
-this.$http.get("http://www.vue.stdio.io/api/login/",{params:{username:this.username,password:this.password}})
-```  
-2. 后端获取到数据库的数据和传递过来的数据进行比对
-3. 正确返回yes 页面进行跳转
-4. 评论组件中 用户姓名显示用户账号名称
-## 注册思路
-1. 通过post传参把用户输入的注册信息传递给后端
-```
- <?php
-error_reporting(0);
-$code = $_POST["code"];
-$name = $_POST["name"];
-$date  = $_POST["date"];
-$age = $_POST["age"];
-$job = $_POST["job"];
-$department  = $_POST["department"];
-$month = $_POST["month"];
-$year = $_POST["year"];
-$politics = $_POST["politics"];
-$health = $_POST["health"];
-
-$db = new MySQLi("localhost","root","123456","study");
-!mysqli_connect_error() or die("连接失败！");
-$sql = "insert into `员工信息` values('{$code}','{$name}','{$date}',
-'{$age}','{$job}','{$department}','{$month}','{$year}','{$politics}','{$health}')";
-$result = $db->query($sql);
-if($result)
-{
-header("location:work.php");
-}
-else
-{
-echo "添加失败！";
-}
-?>
---------------------- 
-```
-3. 通过以上方法进行数据的添加 
-4. 添加完成后页面跳转至登录页
-5. 登录完成进行登录思路的第4步
-### 登录与与注册已经ok 
-1. 点击登录后 账号和密码会传给服务器  服务器拿到数据库数据后进行查询 是否存在 账号和密码 如果ok 则登录成功 在注册账号时 如果有账号存在于数据库则返回 存在的字符串 拿到字符串后 进行页面的显示 提示 用户名已经被注册
-2. bug:当账号和输入的密码都存在于数据库中时 不管密码是否正确都会等会成功！ (待解决)

@@ -6,16 +6,26 @@
 
           <mt-button type="primary" size="large">发表评论</mt-button>
             <div class="cmt-list">
-               <div class="cmt-item" v-for="items in commentlist" :key="items.id">
+               <div class="cmt-item">
                    <div class="cmt-title">
-                       第{{items.id}}楼&nbsp;&nbsp;用户:{{items.user}}&nbsp;&nbsp;发表时间:{{items.addtime}}
+                       第1楼&nbsp;&nbsp;用户:test&nbsp;&nbsp;发表时间:2012-12-12 12:12
                    </div>
-                   <div class="cmt-body">   
-                       {{items.content}}
+                   <div class="cmt-body">
+                       习大大真帅
+                   </div>
+               </div>
+            </div>        
+            <div class="cmt-list">
+               <div class="cmt-item">
+                   <div class="cmt-title">
+                       第1楼&nbsp;&nbsp;用户:test&nbsp;&nbsp;发表时间:2012-12-12 12:12
+                   </div>
+                   <div class="cmt-body">
+                       习大大真帅
                    </div>
                </div>
             </div>
-            <!-- <div class="cmt-list">
+             <div class="cmt-list">
                <div class="cmt-item">
                    <div class="cmt-title">
                        第1楼&nbsp;&nbsp;用户:test&nbsp;&nbsp;发表时间:2012-12-12 12:12
@@ -24,27 +34,7 @@
                        习大大真帅
                    </div>
                </div>
-            </div>             -->
-            <!-- <div class="cmt-list">
-               <div class="cmt-item">
-                   <div class="cmt-title">
-                       第1楼&nbsp;&nbsp;用户:test&nbsp;&nbsp;发表时间:2012-12-12 12:12
-                   </div>
-                   <div class="cmt-body">
-                       习大大真帅
-                   </div>
-               </div>
-            </div> -->
-             <!-- <div class="cmt-list">
-               <div class="cmt-item">
-                   <div class="cmt-title">
-                       第1楼&nbsp;&nbsp;用户:test&nbsp;&nbsp;发表时间:2012-12-12 12:12
-                   </div>
-                   <div class="cmt-body">
-                       习大大真帅
-                   </div>
-               </div>
-            </div>            -->
+            </div>           
           <mt-button type="danger" size="large" plain>加载更多</mt-button>
       </div>
 </template>
@@ -53,24 +43,7 @@
     //这是评论子组件 哪里需要这个组件 则只用导入一下这个组件 然后在 components中绑定一下这个组件 相当在当前组件中引入另外一个组件 
     //只是这个组件不受路由的控制 
     export default{
-        data(){
-            return {
-             commentlist:[],
-            }
-        },
-        created(){
-            //  this.getcoment();
-        },
-        methods:{
-            // getcoment:function(){
-            //    this.$http.get("http://www.vue.stdio.io/api/comment/").then(function(comment){
-            //        this.commentlist=comment.body;
-            //       console.log(this.commentlist);
-            //    })
 
-            // }
-        },
-        // props:["id"],
 
     }
 </script>
