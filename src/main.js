@@ -10,7 +10,8 @@ import "./mui/css/icons-extra.css"  //导入购物车图标
 import preview from "vue-preview"  //引入vue缩略图 插件
 // import VuePreview from 'vue2-preview'
 // Vue.use(VuePreview)；
-Vue.use(preview, {
+
+Vue.use(preview, {  //缩略图官方api注册
    mainClass: 'pswp--minimal--dark',
    barsSize: {top: 0, bottom: 0},
    captionEl: false,
@@ -41,15 +42,31 @@ import "mint-ui/lib/style.css"
 // Vue.component(Button.name,Button);
 
 // Vue.use(Lazyload);
+ 
+//自定义时间过滤器
+Vue.filter("datafilter",function(datetime){
+    var date =new Date(datetime);
+    const year =date.getFullYear(); //年 
+    const month =date.getMonth()+1;  //月
+    const day = date.getDate();   //日
+    const hours =date.getHours();  //时
+    const minutes =date.getMinutes(); //分
+    const seconds = date.getSeconds(); //秒
+   // if(date.getMonth()<10){
+   //    const month =0+date.
+   // }
+    return year+"-"+month+"-"+day+" "+hours+":"+minutes+":"+seconds;
+})
 
 
 var vm=new Vue({
    el:"#app",
    methods:{},
 //    渲染组件
-   render:function(creaElement){
-       return creaElement(app);
+   render:function(creaElement){  //cleaElement指向的是app这个组件 
+       return creaElement(app);  //返回这个组件并渲染
    },
       //挂载路由
-    router
+   router,
+
 })
