@@ -86,11 +86,19 @@ export default {
         getinfodata:function(){    //获取详情数据
             this.$http.get("http://localhost:3000/api/goodinfo/?id="+this.id).then(data=>{
                 this.goodsinfo = data.body.message[0];
-                console.log(data);
             })
         },
-        gofullball(){   //控制小球显示隐藏
+        gofullball(){   //控制小球显示隐藏  点击加入购物车后把数据传给vuex.store中addcar方法
             this.fullball =!this.fullball;
+            var godinfo ={
+                id:this.id,
+                count:this.selectionvalue,
+                danjia:this.goodsinfo.jiage,
+                selected:true,  //默认选择状态
+            };
+            //调用 this.$store.mutations中的addcar进行传递数据
+            this.$store.commit("addcar",godinfo);
+            console.log(this.goodsinfo.jiage)
         },
         beforenter(el){   //动画开始前小球起始位置
             el.style.transform ="translate(0,0)"; //因为在样式上面已经把小球的位置定义在起始位置了

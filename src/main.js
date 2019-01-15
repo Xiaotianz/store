@@ -28,6 +28,8 @@ Vue.use(resource);
 Vue.http.options.emulateJSON = true; //post请求
 //导入路由模块
 import router from "./router.js"
+//导入vuex模块
+import store  from "./vuex.js"   
 
 //全部导入mint-ui
 
@@ -68,5 +70,6 @@ var vm=new Vue({
    },
       //挂载路由
    router,
+   store, //挂载Vuex
 
 })
